@@ -311,23 +311,167 @@ body {
    MOBILE RESPONSIVE
 ============================== */
 
+/* Tablets */
+@media (max-width: 768px) {
+  .todo-app {
+    width: calc(100% - 40px);
+    max-width: 550px;
+    margin: 40px auto;
+    padding: 25px;
+  }
+
+  .todo-app h1 {
+    font-size: 30px;
+  }
+
+  .task-input input {
+    font-size: 15px;
+  }
+
+  .task-input button {
+    padding: 0 18px;
+  }
+
+  .task-list li {
+    padding: 13px 14px;
+  }
+}
+
+
+/* Mobile */
 @media (max-width: 600px) {
   .todo-app {
-    width: calc(100% - 30px);
-    margin: 30px auto;
+    width: calc(100% - 24px);
+    margin: 25px auto;
     padding: 20px;
+    border-radius: 10px;
   }
 
   .todo-app h1 {
     font-size: 27px;
+    margin-bottom: 20px;
   }
 
+  /* Add task */
   .task-input {
     flex-direction: column;
+    gap: 10px;
   }
 
-  .task-input input,
+  .task-input input {
+    width: 100%;
+    height: 44px;
+  }
+
   .task-input button {
     width: 100%;
+    height: 44px;
+  }
+
+  /* Filters */
+  .task-filters {
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+    margin-bottom: 18px;
+  }
+
+  .task-filters button {
+    width: 100%;
+    padding: 11px;
+  }
+
+  /* Statistics */
+  .task-stats {
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .stat {
+    padding: 12px 8px;
+  }
+
+  .stat span {
+    font-size: 13px;
+  }
+
+  .stat strong {
+    font-size: 21px;
+  }
+
+  /* Task list */
+  .task-list {
+    margin-top: 20px;
+  }
+
+  .task-list li {
+    min-height: 50px;
+    padding: 12px;
+    gap: 10px;
+    font-size: 15px;
+  }
+
+  .task-list input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+  }
+
+  .task-list li span {
+    flex: 1;
+    overflow-wrap: anywhere;
+  }
+
+  /* Delete button */
+  .delete-button {
+    padding: 7px 10px;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  /* Empty state */
+  .empty-message {
+    margin-top: 20px;
+    padding: 20px 15px;
+    font-size: 15px;
+  }
+
+  /* Clear completed */
+  .clear-completed-button {
+    margin-top: 12px;
+    padding: 11px;
+    font-size: 14px;
+  }
+}
+
+
+/* Small phones */
+@media (max-width: 400px) {
+  .todo-app {
+    width: calc(100% - 16px);
+    margin: 15px auto;
+    padding: 15px;
+  }
+
+  .todo-app h1 {
+    font-size: 24px;
+  }
+
+  .task-stats {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .stat {
+    width: 100%;
+  }
+
+  .task-list li {
+    padding: 10px;
+  }
+
+  .delete-button {
+    padding: 6px 8px;
+    font-size: 12px;
   }
 }
