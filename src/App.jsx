@@ -1,10 +1,53 @@
 import { useState } from "react";
+
+import TaskForm from "./components/TaskForm";
+import TaskFilter from "./components/TaskFilter";
+import TaskList from "./components/TaskList";
+
 import "./App.css";
 
 function App() {
-  const [taskText, setTaskText] = useState("");
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState("all");
+
+  // Add task
+  const addTask = (text) => {
+    const newTask = {
+      id: Date.now(),
+      text: text,
+      completed: false,
+    };
+
+    setTasks([...tasks, newTask]);
+  };
+
+  // Toggle task
+  const toggleTask = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id
+          ? {
+            ...task,
+            completed: !task.completed,
+          }
+          : task
+      )
+    );
+  };
+
+  // Delete task
+  const deleteTask = (id) => {
+    setTasks(
+      tasks.filter((task) => task.id !== id)
+    );
+  };
+
+  // Clear completed tasks
+  const clearCompleted = () => {
+    setTasks(
+      tasks.filter((task) => !task.completed)
+    );
+  };
 
   // Filter tasks
   const filteredTasks = tasks.filter((task) => {
@@ -19,85 +62,28 @@ function App() {
     return true;
   });
 
-  // Complete / Uncomplete
-  const toggleTask = (id) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === id
-          ? { ...task, completed: !task.completed }
-          : task
-      )
-    );
-  };
-
-  // Delete task
-  const deleteTask = (id) => {
-    setTasks(
-      tasks.filter((task) => task.id !== id)
-    );
-  };
-
-  // Add task
-  const addTask = () => {
-    if (taskText.trim() === "") {
-      return;
-    }
-
-    const newTask = {
-      id: Date.now(),
-      text: taskText.trim(),
-      completed: false,
-    };
-
-    setTasks([...tasks, newTask]);
-    setTaskText("");
-  };
-  const clearCompleted = () => {
-    setTasks(
-      tasks.filter((task) => !task.completed)
-    );
-  };
+  // Statistics
+  const completedTasks = tasks.filter(
+    (task) => task.completed
+  ).length;
 
   return (
     <div className="todo-app">
-      <h1>Todo App</h1>
 
-      {/* Add Task */}
-      <div className="task-input">
-        <input
-          type="text"
-          value={taskText}
-          onChange={(e) => setTaskText(e.target.value)}
-          placeholder="Enter a task"
-        />
+      <h1>Dynamic Task Manager</h1>
 
-        <button onClick={addTask}>Add</button>
-      </div>
-      {/* Task Filters */}
-      <div className="task-filters">
-        <button
-          className={filter === "all" ? "active" : ""}
-          onClick={() => setFilter("all")}
-        >
-          All
-        </button>
+      {/* Task Form */}
+      <TaskForm onAddTask={addTask} />
 
-        <button
-          className={filter === "completed" ? "active" : ""}
-          onClick={() => setFilter("completed")}
-        >
-          Completed
-        </button>
+      {/* Filter */}
+      <TaskFilter
+        filter={filter}
+        onFilterChange={setFilter}
+      />
 
-        <button
-          className={filter === "notCompleted" ? "active" : ""}
-          onClick={() => setFilter("notCompleted")}
-        >
-          Not Completed
-        </button>
-      </div>
-      {/* Task Statistics */}
+      {/* Statistics */}
       <div className="task-stats">
+
         <div className="stat">
           <span>Total Tasks</span>
           <strong>{tasks.length}</strong>
@@ -105,11 +91,18 @@ function App() {
 
         <div className="stat">
           <span>Completed Tasks</span>
-          <strong>
-            {tasks.filter((task) => task.completed).length}
-          </strong>
+          <strong>{completedTasks}</strong>
         </div>
+
       </div>
+
+      {/* Clear Completed */}
+      <button
+        className="clear-completed-button"
+        onClick={clearCompleted}
+      >
+        Clear Completed
+      </button>
 
       {/* Empty State */}
       {tasks.length === 0 ? (
@@ -117,38 +110,14 @@ function App() {
           No tasks yet. Add your first task.
         </p>
       ) : (
-        <ul className="task-list">
-          {filteredTasks.map((task) => (
-            <li
-              key={task.id}
-              className={task.completed ? "completed" : ""}
-            >
-              <input
-                type="checkbox"
-                checked={task.completed}
-                onChange={() => toggleTask(task.id)}
-              />
-
-              <span>{task.text}</span>
-
-              <button
-                className="delete-button"
-                onClick={() => deleteTask(task.id)}
-              >
-                Delete
-              </button>
-            </li>
-          ))}
-        </ul>
+        <TaskList
+          tasks={filteredTasks}
+          onToggleTask={toggleTask}
+          onDeleteTask={deleteTask}
+        />
       )}
-      <button
-        className="clear-completed-button"
-        onClick={clearCompleted}
-      >
-        Clear Completed
-      </button>
-    </div>
 
+    </div>
   );
 }
 
