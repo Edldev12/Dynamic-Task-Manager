@@ -4,7 +4,15 @@ import "./App.css";
 function App() {
   const [taskText, setTaskText] = useState("");
   const [tasks, setTasks] = useState([]);
-
+  const toggleTask = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id
+          ? { ...task, completed: !task.completed }
+          : task
+      )
+    );
+  };
   const addTask = () => {
     if (taskText.trim() === "") {
       return;
@@ -38,8 +46,17 @@ function App() {
       {/* Task List */}
       <ul className="task-list">
         {tasks.map((task) => (
-          <li key={task.id}>
-            {task.text}
+          <li
+            key={task.id}
+            className={task.completed ? "completed" : ""}
+          >
+            <input
+              type="checkbox"
+              checked={task.completed}
+              onChange={() => toggleTask(task.id)}
+            />
+
+            <span>{task.text}</span>
           </li>
         ))}
       </ul>
