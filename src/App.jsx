@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "./App.css";
-function TodoApp() {
+
+function App() {
   const [taskText, setTaskText] = useState("");
   const [tasks, setTasks] = useState([]);
 
   const addTask = () => {
-    // Don't add empty tasks
     if (taskText.trim() === "") {
       return;
     }
@@ -13,29 +13,30 @@ function TodoApp() {
     const newTask = {
       id: Date.now(),
       text: taskText.trim(),
-      completed: false
+      completed: false,
     };
 
     setTasks([...tasks, newTask]);
-
-    // Clear input
     setTaskText("");
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        value={taskText}
-        onChange={(e) => setTaskText(e.target.value)}
-        placeholder="Enter a task"
-      />
+    <div className="todo-app">
+      <h1>Todo App</h1>
 
-      <button onClick={addTask}>
-        Add
-      </button>
+      <div className="task-input">
+        <input
+          type="text"
+          value={taskText}
+          onChange={(e) => setTaskText(e.target.value)}
+          placeholder="Enter a task"
+        />
 
-      <ul>
+        <button onClick={addTask}>Add</button>
+      </div>
+
+      {/* Task List */}
+      <ul className="task-list">
         {tasks.map((task) => (
           <li key={task.id}>
             {task.text}
@@ -46,4 +47,4 @@ function TodoApp() {
   );
 }
 
-export default TodoApp;
+export default App;
