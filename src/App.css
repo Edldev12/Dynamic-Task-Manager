@@ -286,6 +286,28 @@ body {
 }
 
 /* ==============================
+   CLEAR COMPLETED
+============================== */
+
+.clear-completed-button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 11px;
+  border: none;
+  border-radius: 7px;
+  background: #475569;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.clear-completed-button:hover {
+  background: #334155;
+}
+
+/* ==============================
    MOBILE RESPONSIVE
 ============================== */
 
