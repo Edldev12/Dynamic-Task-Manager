@@ -250,6 +250,42 @@ body {
 }
 
 /* ==============================
+   TASK FILTERS
+============================== */
+
+.task-filters {
+  display: flex;
+  gap: 10px;
+  margin-top: 25px;
+  margin-bottom: 20px;
+}
+
+.task-filters button {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.task-filters button:hover {
+  background: #f1f5f9;
+}
+
+/* Active filter */
+
+.task-filters button.active {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+/* ==============================
    MOBILE RESPONSIVE
 ============================== */
 
