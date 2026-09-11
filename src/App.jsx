@@ -4,6 +4,7 @@ import "./App.css";
 function App() {
   const [taskText, setTaskText] = useState("");
   const [tasks, setTasks] = useState([]);
+
   const toggleTask = (id) => {
     setTasks(
       tasks.map((task) =>
@@ -13,11 +14,13 @@ function App() {
       )
     );
   };
+
   const deleteTask = (id) => {
     setTasks(
       tasks.filter((task) => task.id !== id)
     );
   };
+
   const addTask = () => {
     if (taskText.trim() === "") {
       return;
@@ -48,30 +51,36 @@ function App() {
         <button onClick={addTask}>Add</button>
       </div>
 
-      {/* Task List */}
-      <ul className="task-list">
-        {tasks.map((task) => (
-          <li
-            key={task.id}
-            className={task.completed ? "completed" : ""}
-          >
-            <input
-              type="checkbox"
-              checked={task.completed}
-              onChange={() => toggleTask(task.id)}
-            />
-
-            <span>{task.text}</span>
-
-            <button
-              className="delete-button"
-              onClick={() => deleteTask(task.id)}
+      {/* Empty State / Task List */}
+      {tasks.length === 0 ? (
+        <p className="empty-message">
+          No tasks yet. Add your first task.
+        </p>
+      ) : (
+        <ul className="task-list">
+          {tasks.map((task) => (
+            <li
+              key={task.id}
+              className={task.completed ? "completed" : ""}
             >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
+              <input
+                type="checkbox"
+                checked={task.completed}
+                onChange={() => toggleTask(task.id)}
+              />
+
+              <span>{task.text}</span>
+
+              <button
+                className="delete-button"
+                onClick={() => deleteTask(task.id)}
+              >
+                Delete
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
