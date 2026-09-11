@@ -13,6 +13,11 @@ function App() {
       )
     );
   };
+  const deleteTask = (id) => {
+    setTasks(
+      tasks.filter((task) => task.id !== id)
+    );
+  };
   const addTask = () => {
     if (taskText.trim() === "") {
       return;
@@ -57,6 +62,13 @@ function App() {
             />
 
             <span>{task.text}</span>
+
+            <button
+              className="delete-button"
+              onClick={() => deleteTask(task.id)}
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>
