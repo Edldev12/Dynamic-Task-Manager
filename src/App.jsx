@@ -52,6 +52,11 @@ function App() {
     setTasks([...tasks, newTask]);
     setTaskText("");
   };
+  const clearCompleted = () => {
+    setTasks(
+      tasks.filter((task) => !task.completed)
+    );
+  };
 
   return (
     <div className="todo-app">
@@ -136,7 +141,14 @@ function App() {
           ))}
         </ul>
       )}
+      <button
+        className="clear-completed-button"
+        onClick={clearCompleted}
+      >
+        Clear Completed
+      </button>
     </div>
+
   );
 }
 
