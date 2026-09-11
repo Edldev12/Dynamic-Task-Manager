@@ -180,6 +180,30 @@ body {
 }
 
 /* ==============================
+   DELETE BUTTON
+============================== */
+
+.delete-button {
+  margin-left: auto;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #dc2626;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.delete-button:hover {
+  background: #b91c1c;
+}
+
+.delete-button:active {
+  transform: scale(0.97);
+}
+
+/* ==============================
    MOBILE RESPONSIVE
 ============================== */
 
