@@ -4,7 +4,22 @@ import "./App.css";
 function App() {
   const [taskText, setTaskText] = useState("");
   const [tasks, setTasks] = useState([]);
+  const [filter, setFilter] = useState("all");
 
+  // Filter tasks
+  const filteredTasks = tasks.filter((task) => {
+    if (filter === "completed") {
+      return task.completed;
+    }
+
+    if (filter === "notCompleted") {
+      return !task.completed;
+    }
+
+    return true;
+  });
+
+  // Complete / Uncomplete
   const toggleTask = (id) => {
     setTasks(
       tasks.map((task) =>
@@ -15,12 +30,14 @@ function App() {
     );
   };
 
+  // Delete task
   const deleteTask = (id) => {
     setTasks(
       tasks.filter((task) => task.id !== id)
     );
   };
 
+  // Add task
   const addTask = () => {
     if (taskText.trim() === "") {
       return;
@@ -40,6 +57,7 @@ function App() {
     <div className="todo-app">
       <h1>Todo App</h1>
 
+      {/* Add Task */}
       <div className="task-input">
         <input
           type="text"
@@ -50,6 +68,30 @@ function App() {
 
         <button onClick={addTask}>Add</button>
       </div>
+      {/* Task Filters */}
+      <div className="task-filters">
+        <button
+          className={filter === "all" ? "active" : ""}
+          onClick={() => setFilter("all")}
+        >
+          All
+        </button>
+
+        <button
+          className={filter === "completed" ? "active" : ""}
+          onClick={() => setFilter("completed")}
+        >
+          Completed
+        </button>
+
+        <button
+          className={filter === "notCompleted" ? "active" : ""}
+          onClick={() => setFilter("notCompleted")}
+        >
+          Not Completed
+        </button>
+      </div>
+      {/* Task Statistics */}
       <div className="task-stats">
         <div className="stat">
           <span>Total Tasks</span>
@@ -63,14 +105,15 @@ function App() {
           </strong>
         </div>
       </div>
-      {/* Empty State / Task List */}
+
+      {/* Empty State */}
       {tasks.length === 0 ? (
         <p className="empty-message">
           No tasks yet. Add your first task.
         </p>
       ) : (
         <ul className="task-list">
-          {tasks.map((task) => (
+          {filteredTasks.map((task) => (
             <li
               key={task.id}
               className={task.completed ? "completed" : ""}
