@@ -1,71 +1,170 @@
+/* ==============================
+   RESET
+============================== */
+
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
+
+
+/* ==============================
+   BODY
+============================== */
 
 body {
   font-family: Arial, sans-serif;
-  background: #f3f4f6;
+  background: #f1f5f9;
+  color: #1e293b;
 }
+
+
+/* ==============================
+   TODO APP
+============================== */
 
 .todo-app {
   width: 100%;
-  max-width: 500px;
+  max-width: 550px;
   margin: 60px auto;
   padding: 30px;
-  background: white;
+  background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
+
+/* ==============================
+   TITLE
+============================== */
+
 .todo-app h1 {
   text-align: center;
   margin-bottom: 25px;
+  font-size: 32px;
   color: #111827;
 }
+
+
+/* ==============================
+   INPUT SECTION
+============================== */
 
 .task-input {
   display: flex;
   gap: 10px;
-  margin-bottom: 25px;
+  width: 100%;
 }
 
 .task-input input {
   flex: 1;
-  padding: 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  font-size: 16px;
+  height: 45px;
+  padding: 0 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
   outline: none;
+  font-size: 16px;
+  color: #1e293b;
+}
+
+.task-input input::placeholder {
+  color: #94a3b8;
 }
 
 .task-input input:focus {
   border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
 }
 
+
+/* ==============================
+   ADD BUTTON
+============================== */
+
 .task-input button {
-  padding: 12px 20px;
+  height: 45px;
+  padding: 0 22px;
   border: none;
-  border-radius: 6px;
+  border-radius: 7px;
   background: #2563eb;
   color: white;
   font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
+  transition: background 0.2s ease;
 }
 
 .task-input button:hover {
   background: #1d4ed8;
 }
 
-.task-list {
-  list-style: none;
+.task-input button:active {
+  transform: scale(0.98);
 }
 
+
+/* ==============================
+   TASK LIST
+============================== */
+
+.task-list {
+  list-style: none;
+  margin-top: 25px;
+  padding: 0;
+}
+
+
+/* ==============================
+   INDIVIDUAL TASK
+============================== */
+
 .task-list li {
-  padding: 12px;
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
   margin-bottom: 10px;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
+
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+
+  font-size: 16px;
+  color: #334155;
+
+  transition: background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.task-list li:hover {
+  background: #f1f5f9;
+  transform: translateY(-1px);
+}
+
+
+/* ==============================
+   MOBILE RESPONSIVE
+============================== */
+
+@media (max-width: 600px) {
+  .todo-app {
+    width: calc(100% - 30px);
+    margin: 30px auto;
+    padding: 20px;
+  }
+
+  .todo-app h1 {
+    font-size: 27px;
+  }
+
+  .task-input {
+    flex-direction: column;
+  }
+
+  .task-input input,
+  .task-input button {
+    width: 100%;
+  }
 }
