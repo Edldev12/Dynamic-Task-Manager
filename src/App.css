@@ -143,6 +143,41 @@ body {
   transform: translateY(-1px);
 }
 
+/* ==============================
+   TASK
+============================== */
+
+.task-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+
+/* ==============================
+   CHECKBOX
+============================== */
+
+.task-list input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+
+/* ==============================
+   COMPLETED TASK
+============================== */
+
+.task-list li.completed {
+  background: #f1f5f9;
+  color: #94a3b8;
+}
+
+.task-list li.completed span {
+  text-decoration: line-through;
+  color: #94a3b8;
+}
 
 /* ==============================
    MOBILE RESPONSIVE
