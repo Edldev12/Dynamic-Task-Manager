@@ -219,6 +219,37 @@ body {
 }
 
 /* ==============================
+   TASK STATISTICS
+============================== */
+
+.task-stats {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.stat {
+  flex: 1;
+  padding: 15px;
+  text-align: center;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.stat span {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.stat strong {
+  font-size: 24px;
+  color: #2563eb;
+}
+
+/* ==============================
    MOBILE RESPONSIVE
 ============================== */
 
