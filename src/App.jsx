@@ -1,5 +1,5 @@
 import { useState } from "react";
-import './App.css';
+import "./App.css";
 function TodoApp() {
   const [taskText, setTaskText] = useState("");
   const [tasks, setTasks] = useState([]);
