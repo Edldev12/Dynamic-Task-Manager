@@ -50,7 +50,19 @@ function App() {
 
         <button onClick={addTask}>Add</button>
       </div>
+      <div className="task-stats">
+        <div className="stat">
+          <span>Total Tasks</span>
+          <strong>{tasks.length}</strong>
+        </div>
 
+        <div className="stat">
+          <span>Completed Tasks</span>
+          <strong>
+            {tasks.filter((task) => task.completed).length}
+          </strong>
+        </div>
+      </div>
       {/* Empty State / Task List */}
       {tasks.length === 0 ? (
         <p className="empty-message">
